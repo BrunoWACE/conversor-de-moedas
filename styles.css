@@ -2,67 +2,105 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Noto Sans Jp', sans-serif;
+    font-family: "Poppins", sans-serif;
     outline: none;
 }
 
 body {
-    background-color: #3866c3;
+    background: linear-gradient(to bottom, #0099ff 0%, #000c14 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
-.logo {
-    width: 410px;
-    display: block;
-    margin: 20px auto 20px;
+.titles {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 3, 43, 0.9);
+    width: 400px;
+    margin: 30px auto;
+    text-align: center;
+    position: relative;
+}
+
+.titles::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    /* Fica logo abaixo do texto */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 5px;
+    background: #ffffff;
+    border-radius: 2px;
+    transition: width 0.4s ease-out;
+    box-shadow: 0 2px 4px rgba(0, 3, 43, 0.9);
+}
+
+.titles:hover::after {
+    width: 360px;
+}
+
+/*opcional sempre que abrir a pagina atiovar efeito expandir via @keyframes*/
+/*@keyframes expandUnderline {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 320px;
+    }
+}*/
+
+.titles::after {
+    animation: expandUnderline 3s forwards ease-out;
 }
 
 main {
-    width: 390px;
-    background: #F4F4F4;
+    width: 370px;
+    background-color: #f4f4f4;
     border-radius: 20px;
-    margin: 0 auto 25px;
-    padding: 44px 24px 23px;
+    margin: 0 auto;
+    padding: 30px 20px 20px;
 }
 
 label {
     color: #777777;
+    font-size: 14px;
     font-weight: 400;
-    font-size: 10px;
+}
+
+select {
+    cursor: pointer;
 }
 
 select,
 input {
-    background: #FFFFFF;
-    border: 2px solid #BBBBBB;
-    border-radius: 4px;
-    height: 48px;
+    background: #ffffff;
+    border: 1px solid #bbbbbb;
+    border-radius: 5px;
+    height: 45px;
     width: 100%;
     margin-bottom: 24px;
     appearance: none;
-    padding-left: 18px;
-    font-weight: 700;
-    font-size: 16px;
-    color: #555555;
-    cursor: pointer;
-}
-
-select::placeholder,
-input::placeholder {
-    color: #BBBBBB;
-    font-weight: 350;
+    padding-left: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #074874;
 }
 
 button {
-    background: #0033d8;
+    background: #0975bd;
     border-radius: 5px;
-    width: 100%;
     border: none;
-    height: 48px;
-    color: #FFFFFF;
-    font-weight: 700;
-    font-size: 18px;
+    width: 100%;
+    height: 45px;
+    color: #ffffff;
     cursor: pointer;
-
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 5px;
 }
 
 button:hover {
@@ -70,63 +108,80 @@ button:hover {
 }
 
 button:active {
-    opacity: 0.6;
+    background: #053555;
 }
 
 section {
-    border: 3px solid #3ab4fc;
-    border-radius: 20px;
-    margin-top: 27px;
+    border: 2px solid #0975bd;
+    margin-top: 30px;
+    border-radius: 5px;
     padding: 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
+    gap: 2px;
 }
 
-.flag-icon1,
-.flag-icon2 {
-
-    border: 3px solid #0033d8;
-    border-radius: 50%;
-    padding: 3px;
-    background-color: white;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
+.arrow {
+    margin: 10px 0;
+    animation: girar-horario 4s linear infinite;
+    cursor: pointer;
 }
 
-.arrow-img {
-    margin: 15px 0;
-}
+@keyframes girar-horario {
+    from {
+        transform: rotate(0deg);
+    }
 
-.currency-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .currency {
     color: #777777;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .currency-value,
 .currency-value-to-convert {
-    color: #555555;
+    color: #074874;
     font-weight: 700;
     font-size: 20px;
 }
 
-@media screen and (max-width: 900px) {
+.currency-img,
+.currency-img-to {
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border: 2px solid #0975bd;
+}
 
-    .logo {
-        width: 370px;
+@media screen and (max-width: 768px) {
+    main {
+        width: 330px;
+        margin-left: 2.2rem;
+        padding: 20px 15px 15px;
     }
 
-    main {
-        width: 360px;
-        margin-bottom: 20px;
+    img {
+        width: 55px;
+    }
+
+    select,
+    input {
+        height: 40px;
+        margin-bottom: 22px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .titles {
+        font-size: 16px;
+    }
+
+    .titles:hover::after {
+        width: 325px;
     }
 }
