@@ -1,5 +1,6 @@
+/*
 //Feito com o Rodolfo 
-/*const convertButton = document.querySelector('.convert-button')
+const convertButton = document.querySelector('.convert-button')
 const currencySelect = document.querySelector('.currency-select')
 
 function convertValues() {
@@ -62,7 +63,7 @@ function changeCurrency() {
 }
 
 currencySelect.addEventListener('change', changeCurrency)
-convertButton.addEventListener('click', convertValues) */
+convertButton.addEventListener('click', convertValues)*/
 
 
 // Seletores do DOM
@@ -261,3 +262,4 @@ window.addEventListener('DOMContentLoaded', () => {
     updateBoxesUI();
     convertValues();
 });
+
