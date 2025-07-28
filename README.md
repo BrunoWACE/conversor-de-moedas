@@ -48,7 +48,12 @@ Sim! O projeto foi desenvolvido com **mobile first**, ou seja:
 
 ## 🖼️ Preview do Projeto
 
-<img src="./assets/ImgMoeda.png"/>
+<div align="center">
+  <img src="./assets/ImgMoeda.png" alt="Preview do Projeto" width="650" style="display: block; margin: auto;" />
+
+</div>
+
+
 
 ---
 
