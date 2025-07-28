@@ -7,22 +7,25 @@
 }
 
 body {
-  background: linear-gradient(-45deg, #1e3c72, #2a5298, #0abcf9, #1e3c72);
-  background-size: 400% 400%;
-  animation: gradientAnimation 10s ease infinite;
-  min-height: 100vh;
+    background: linear-gradient(-45deg, #1e3c72, #2a5298, #0abcf9, #1e3c72);
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 @keyframes gradientAnimation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .titles {
@@ -71,11 +74,12 @@ body {
 }
 
 main {
-    width: 370px;
-    background-color: #f4f4f4;
-    border-radius: 20px;
-    margin: 0 auto;
-    padding: 30px 20px 20px;
+  width: 370px;
+  background-color: #f4f4f4;
+  border-radius: 20px;
+  margin: 0 auto;
+  padding: 30px 20px 20px;
+  margin-bottom: 35px; /* ← aqui está o respiro */
 }
 
 label {
@@ -127,7 +131,7 @@ button:active {
 section {
     border: 2px solid #0975bd;
     margin-top: 30px;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 12px;
     display: flex;
     flex-direction: column;
@@ -173,9 +177,10 @@ section {
 
 @media screen and (max-width: 768px) {
     main {
-        width: 330px;
-        margin-left: 2.2rem;
-        padding: 20px 15px 15px;
+        width: 100%;
+        max-width: 330px;
+        margin: 0 auto;
+        padding: 40px 15px 15px;
     }
 
     img {
@@ -191,10 +196,48 @@ section {
     }
 
     .titles {
+        width: 100%;
+        max-width: 330px;
+        margin: 20px auto;
         font-size: 16px;
     }
 
     .titles:hover::after {
-        width: 325px;
+        width: 100%;
     }
+}
+
+@media screen and (max-width: 360px) {
+    main {
+        width: 100%;
+        max-width: 330px;
+        padding: 1px 15px 15px;
+        margin: 0 15px;
+    }
+
+    .titles {
+        font-size: 15px;
+    }
+
+    img {
+        width: 50px;
+    }
+
+    select,
+    input {
+        height: 38px;
+        font-size: 13px;
+    }
+
+    button {
+        font-size: 16px;
+        height: 42px;
+    }
+
+    .currency-value,
+    .currency-value-to-convert {
+        font-size: 18px;
+    }
+
+  
 }

@@ -83,107 +83,63 @@ const rightBoxValue = document.querySelector('.currency-value');
 
 // Função que converte valores de qualquer moeda A para qualquer moeda B,
 // usando o Real (BRL) como “moeda ponte”.
-function convertValues() {
-    // 2.1) Pega o valor digitado (string) e transforma em número
+async function convertValues() {
     const inputCurrencyValue = parseFloat(document.querySelector('.input-currency').value) || 0;
 
-    //  Defina aqui as cotações em Relação ao REAL:
-    //  ex: 1 USD = 5.2 BRL, 1 EUR = 6.2 BRL, 1 JPY = 3.9 BRL
-    const dolarToday = 5.2;
-    const euroToday = 6.2;
-    const ieneToday = 3.9;
+    const fromCurrency = currencySelectToConvert.value;
+    const toCurrency = currencySelect.value;
 
-    // Primeiro: converter de “origem” → BRL
-    let valorEmReais = 0;
-    switch (currencySelectToConvert.value) {
-        case 'real':
-            // Se a moeda de origem já for Real, não multiplica nada:
-            valorEmReais = inputCurrencyValue;
-            break;
-        case 'dolar':
-            // Se for Dólar, multiplica para converter USD → BRL
-            valorEmReais = inputCurrencyValue * dolarToday;
-            break;
-        case 'euro':
-            // Se for Euro, multiplica para converter EUR → BRL
-            valorEmReais = inputCurrencyValue * euroToday;
-            break;
-        case 'iene':
-            // Se for Iene, multiplica para converter JPY → BRL
-            valorEmReais = inputCurrencyValue * ieneToday;
-            break;
-        default:
-            valorEmReais = 0;
+    const currencyCodes = {
+        real: 'BRL',
+        dolar: 'USD',
+        euro: 'EUR',
+        iene: 'JPY'
+    };
+
+    const fromCode = currencyCodes[fromCurrency];
+    const toCode = currencyCodes[toCurrency];
+
+    const url = `https://api.frankfurter.app/latest?from=${fromCode}&to=${toCode}`;
+    const response = await fetch(url);
+    const data = await response.json();
+
+    console.log("Resposta Frankfurter:", data);
+
+    if (!data.rates || !data.rates[toCode]) {
+        alert(`Erro ao obter taxa de câmbio para ${fromCode} → ${toCode}.`);
+        return;
     }
 
-    //  Atualiza o valo r no BOX da ESQUERDA (origem),
-    //  mostrando como “origem formatada”:
-    switch (currencySelectToConvert.value) {
-        case 'real':
-            leftBoxValue.innerHTML = new Intl.NumberFormat('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-            }).format(inputCurrencyValue);
-            break;
-        case 'dolar':
-            leftBoxValue.innerHTML = new Intl.NumberFormat('en-US', {
-                style: 'currency',
-                currency: 'USD'
-            }).format(inputCurrencyValue);
-            break;
-        case 'euro':
-            leftBoxValue.innerHTML = new Intl.NumberFormat('de-DE', {
-                style: 'currency',
-                currency: 'EUR'
-            }).format(inputCurrencyValue);
-            break;
-        case 'iene':
-            leftBoxValue.innerHTML = new Intl.NumberFormat('ja-JP', {
-                style: 'currency',
-                currency: 'JPY'
-            }).format(inputCurrencyValue);
-            break;
-    }
+    const conversionRate = data.rates[toCode];
+    const convertedValue = inputCurrencyValue * conversionRate;
 
-    //  Em seguida: converter de BRL → “moeda de destino”
-    let valorConvertido = 0;
-    switch (currencySelect.value) {
-        case 'real':
-            // Se destino for Real, o valor é exatamente valorEmReais
-            valorConvertido = valorEmReais;
-            rightBoxValue.innerHTML = new Intl.NumberFormat('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-            }).format(valorConvertido);
-            break;
-        case 'dolar':
-            // Se destino for Dólar, divide o valorEmReais pela cotação do Dólar
-            valorConvertido = valorEmReais / dolarToday;
-            rightBoxValue.innerHTML = new Intl.NumberFormat('en-US', {
-                style: 'currency',
-                currency: 'USD'
-            }).format(valorConvertido);
-            break;
-        case 'euro':
-            // Se destino for Euro, divide o valorEmReais pela cotação do Euro
-            valorConvertido = valorEmReais / euroToday;
-            rightBoxValue.innerHTML = new Intl.NumberFormat('de-DE', {
-                style: 'currency',
-                currency: 'EUR'
-            }).format(valorConvertido);
-            break;
-        case 'iene':
-            // Se destino for Iene, divide o valorEmReais pela cotação do Iene
-            valorConvertido = valorEmReais / ieneToday;
-            rightBoxValue.innerHTML = new Intl.NumberFormat('ja-JP', {
-                style: 'currency',
-                currency: 'JPY'
-            }).format(valorConvertido);
-            break;
-        default:
-            rightBoxValue.innerHTML = '–';
-    }
+    const formatFrom = new Intl.NumberFormat(
+        fromCode === 'USD' ? 'en-US' :
+        fromCode === 'EUR' ? 'de-DE' :
+        fromCode === 'JPY' ? 'ja-JP' :
+        'pt-BR',
+        {
+            style: 'currency',
+            currency: fromCode
+        }
+    );
+    leftBoxValue.innerHTML = formatFrom.format(inputCurrencyValue);
+
+    const formatTo = new Intl.NumberFormat(
+        toCode === 'USD' ? 'en-US' :
+        toCode === 'EUR' ? 'de-DE' :
+        toCode === 'JPY' ? 'ja-JP' :
+        'pt-BR',
+        {
+            style: 'currency',
+            currency: toCode
+        }
+    );
+    rightBoxValue.innerHTML = formatTo.format(convertedValue);
 }
+
+
+
 
 
 // Função que atualiza o nome e a imagem de cada box (origem e destino):
