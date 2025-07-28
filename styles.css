@@ -29,12 +29,12 @@ body {
 }
 
 .titles {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 700;
     color: #ffffff;
     text-shadow: 2px 2px 4px rgba(0, 3, 43, 0.9);
     width: 400px;
-    margin: 30px auto;
+    margin: 20px auto;
     text-align: center;
     position: relative;
 }
@@ -55,7 +55,7 @@ body {
 }
 
 .titles:hover::after {
-    width: 360px;
+    width: 306px;
 }
 
 /*opcional sempre que abrir a pagina atiovar efeito expandir via @keyframes*/
@@ -74,17 +74,17 @@ body {
 }
 
 main {
-  width: 370px;
+  width: 307px;
   background-color: #f4f4f4;
   border-radius: 20px;
   margin: 0 auto;
-  padding: 30px 20px 20px;
-  margin-bottom: 35px; /* ← aqui está o respiro */
+  padding: 20px 20px 20px;
+  margin-bottom: 20px; /* ← aqui está o respiro */
 }
 
 label {
     color: #777777;
-    font-size: 14px;
+    font-size: 10px;
     font-weight: 400;
 }
 
@@ -97,12 +97,12 @@ input {
     background: #ffffff;
     border: 1px solid #bbbbbb;
     border-radius: 5px;
-    height: 45px;
+    height: 30px;
     width: 100%;
-    margin-bottom: 24px;
+    margin-bottom: 12px;
     appearance: none;
-    padding-left: 10px;
-    font-size: 15px;
+    padding-left: 7px;
+    font-size: 11px;
     font-weight: 600;
     color: #074874;
 }
@@ -112,10 +112,10 @@ button {
     border-radius: 5px;
     border: none;
     width: 100%;
-    height: 45px;
+    height: 35px;
     color: #ffffff;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 700;
     margin-top: 5px;
 }
@@ -130,18 +130,18 @@ button:active {
 
 section {
     border: 2px solid #0975bd;
-    margin-top: 30px;
+    margin-top: 20px;
     border-radius: 10px;
-    padding: 12px;
+    padding: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 2px;
+    gap: 1px;
 }
 
 .arrow {
-    margin: 10px 0;
+    margin: 5px 0;
     animation: girar-horario 4s linear infinite;
     cursor: pointer;
 }
@@ -158,14 +158,14 @@ section {
 
 .currency {
     color: #777777;
-    font-size: 13px;
+    font-size: 11px;
 }
 
 .currency-value,
 .currency-value-to-convert {
     color: #074874;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 13px;
 }
 
 .currency-img,
@@ -183,15 +183,19 @@ section {
         padding: 40px 15px 15px;
     }
 
+    label {
+    font-size: 15px;
+}
+
     img {
         width: 55px;
     }
 
     select,
     input {
-        height: 40px;
+        height: 45px;
         margin-bottom: 22px;
-        font-size: 14px;
+        font-size: 17px;
         font-weight: 600;
     }
 
@@ -202,9 +206,24 @@ section {
         font-size: 16px;
     }
 
+    button {
+    font-size: 25px;
+    height: 45px;
+}
+
     .titles:hover::after {
         width: 100%;
     }
+
+    .currency {
+    font-size: 17px;
+}
+
+    .currency-value,
+.currency-value-to-convert {
+    font-size: 20px;
+}
+
 }
 
 @media screen and (max-width: 360px) {
