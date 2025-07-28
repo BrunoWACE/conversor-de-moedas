@@ -1,4 +1,4 @@
-# 💱 Conversor de Moedas
+# 💱 CONVERSOR DE MOEDAS
 
 Bem-vindo ao meu **Conversor de Moedas** feito com **HTML, CSS e JavaScript**!  
 Este projeto foi criado para praticar a manipulação de DOM, eventos, lógica condicional e chamadas de API com `fetch()` — tudo isso em uma aplicação útil e com **interface responsiva e moderna**.  
