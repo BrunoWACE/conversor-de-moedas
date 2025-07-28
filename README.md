@@ -1,34 +1,60 @@
-💱 Projeto: Conversor de Moedas
-<b>Esse é um projeto prático que desenvolvi para treinar conceitos de manipulação de DOM com JavaScript</b>, criando uma aplicação que permite converter valores entre diferentes moedas. A ideia é fortalecer o uso de funções, eventos, seleção dinâmica de opções e cálculos no frontend.
+# 💱 Conversor de Moedas
 
-<br> <h3>💡 Funcionalidades:</h3>
-Conversão de moedas em tempo real
+Bem-vindo ao meu **Conversor de Moedas** feito com **HTML, CSS e JavaScript**!  
+Este projeto foi criado para praticar a manipulação de DOM, eventos, lógica condicional e chamadas de API com `fetch()` — tudo isso em uma aplicação útil e com **interface responsiva e moderna**.  
+Foi desenvolvido como parte dos meus estudos no <a href="https://rodolfomori.com.br" target="_blank">DevClub</a>.
 
-Seleção dinâmica de moedas de origem e destino
+---
 
-Interface limpa e intuitiva
+## 💡 Como funciona
 
-Estilização moderna com CSS3
+- Selecione a moeda de **origem** e a **de destino**
+- Digite o valor a ser convertido
+- Clique em **Converter**
+- O sistema exibe o valor convertido com **formatação local e bandeiras**
 
-Responsividade para diferentes dispositivos
+---
 
-<br> <h3>🖼️ Preview do Projeto</h3> 
+## 🧪 Tecnologias usadas
 
-<br>
-<h3>🛠 Tecnologias Utilizadas</h3>
+| Tecnologia | Descrição |
+|------------|------------|
+| ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white) | Estrutura da página |
+| ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)| Estilização e responsividade |
+| ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)| Lógica do conversor e consumo de API |
+| ![API](https://img.shields.io/badge/API-ExchangeRateHost-informational?style=flat&color=7a7a7a)| Taxas de câmbio atualizadas em tempo real |
+| ![Responsivo](https://img.shields.io/badge/Responsivo-Mobile%20First-00c4cc?style=flat)| Layout adaptado para smartphones |
 
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)  
-![Git](https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white) 
+---
 
+## 📱 Responsivo
 
-<br> <h3>📁 Estrutura de Pastas</h3>
-📦 conversor-de-moedas
-├── index.html
-├── styles.css
-├── script.js
-└── assets
+Sim! O projeto foi desenvolvido com **mobile first**, ou seja:
+- Estilização adaptada para telas menores
+- Campos maiores para toque
+- Layout centralizado e limpo
 
-<br> <br> <h3>📱 Responsividade</h3>
-O projeto foi desenvolvido para se adaptar a diferentes tamanhos de tela, proporcionando uma boa experiência tanto para desktop quanto para dispositivos móveis, com ajustes básicos usando media queries.
+---
+
+## 🔁 Funcionalidades
+
+- ✅ Conversão em tempo real com API externa
+- ✅ Suporte a BRL, USD, EUR e JPY
+- ✅ Bandeiras e nomes personalizados
+- ✅ Formatação local de moeda com `Intl.NumberFormat`
+- ✅ Feedbacks de erro caso a API falhe
+
+---
+
+## 🖼️ Preview do Projeto
+
+<img src="./assets/ImgMoeda.png"/>
+
+---
+
+## 🚀 Link do Projeto
+[Acesse o Conversor de Moedas](https://brunowace.github.io/conversor-de-moedas/)  
+💡 Dica: abra em uma nova aba (Ctrl + clique) para testar em tamanho responsivo!
+
+---
+
