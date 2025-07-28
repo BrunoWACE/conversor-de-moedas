@@ -1,6 +1,6 @@
-# 💱 CONVERSOR DE MOEDAS
+# 💱 CONVERSOR DE MOEDAS ONLINE
 
-Bem-vindo ao meu **Conversor de Moedas** feito com **HTML, CSS e JavaScript**!  
+Bem-vindo ao meu **Conversor de Moedas Online** feito com **HTML, CSS e JavaScript**!  
 Este projeto foi criado para praticar a manipulação de DOM, eventos, lógica condicional e chamadas de API com `fetch()` — tudo isso em uma aplicação útil e com **interface responsiva e moderna**.  
 Foi desenvolvido como parte dos meus estudos no <a href="https://rodolfomori.com.br" target="_blank">DevClub</a>.
 
