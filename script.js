@@ -1,3 +1,5 @@
+//Versão 01
+
 /*
 //Feito com o Rodolfo 
 const convertButton = document.querySelector('.convert-button')
@@ -66,6 +68,10 @@ currencySelect.addEventListener('change', changeCurrency)
 convertButton.addEventListener('click', convertValues)*/
 
 
+
+
+//Versão 2
+/*
 // Seletores do DOM
 const currencySelectToConvert = document.querySelector('.currency-select-to-convert');
 const currencySelect = document.querySelector('.currency-select');
@@ -219,3 +225,184 @@ window.addEventListener('DOMContentLoaded', () => {
     convertValues();
 });
 
+*/
+
+
+// Versão 3 (FEFINITIVA)
+
+const currencySelectToConvert = document.querySelector('.currency-select-to-convert');
+const currencySelect = document.querySelector('.currency-select');
+const convertButton = document.querySelector('.convert-button');
+const arrow = document.querySelector('.arrow');
+
+const leftBoxImage = document.querySelector('.currency-img-to');
+const leftBoxName = document.querySelectorAll('.currency-box .currency')[0];
+const leftBoxValue = document.querySelector('.currency-value-to-convert');
+
+const rightBoxImage = document.querySelector('.currency-img');
+const rightBoxName = document.getElementById('currency-name');
+const rightBoxValue = document.querySelector('.currency-value');
+
+
+// Função que converte valores de qualquer moeda A para qualquer moeda B,
+// usando o Real (BRL) como “moeda ponte”.
+async function convertValues() {
+    const inputCurrencyValue = parseFloat(document.querySelector('.input-currency').value) || 0;
+
+    const fromCurrency = currencySelectToConvert.value;
+    const toCurrency = currencySelect.value;
+
+    if (fromCurrency === toCurrency) {
+        alert("Selecione moedas diferentes para realizar a conversão.");
+        return;
+    }
+
+    const currencyCodes = {
+        real: 'BRL',
+        dolar: 'USD',
+        euro: 'EUR',
+        iene: 'JPY'
+    };
+
+    const fromCode = currencyCodes[fromCurrency];
+    const toCode = currencyCodes[toCurrency];
+
+    const url = `https://api.frankfurter.app/latest?from=${fromCode}&to=${toCode}`;
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (!data.rates || !data.rates[toCode]) {
+            alert(`Erro ao obter taxa de câmbio para ${fromCode} → ${toCode}.`);
+            return;
+        }
+
+        const conversionRate = data.rates[toCode];
+        const convertedValue = inputCurrencyValue * conversionRate;
+
+        const formatFrom = new Intl.NumberFormat(
+            fromCode === 'USD' ? 'en-US' :
+                fromCode === 'EUR' ? 'de-DE' :
+                    fromCode === 'JPY' ? 'ja-JP' :
+                        'pt-BR',
+            {
+                style: 'currency',
+                currency: fromCode
+            }
+        );
+        leftBoxValue.innerHTML = formatFrom.format(inputCurrencyValue);
+
+        const formatTo = new Intl.NumberFormat(
+            toCode === 'USD' ? 'en-US' :
+                toCode === 'EUR' ? 'de-DE' :
+                    toCode === 'JPY' ? 'ja-JP' :
+                        'pt-BR',
+            {
+                style: 'currency',
+                currency: toCode
+            }
+        );
+        rightBoxValue.innerHTML = formatTo.format(convertedValue);
+    } catch (error) {
+        alert("Erro na conversão. Verifique sua conexão ou tente novamente mais tarde.");
+        console.error("Erro na API:", error);
+    }
+}
+
+// Função que atualiza nome e imagem de cada box:
+function updateBoxesUI() {
+    // Box da esquerda (moeda de origem):
+    switch (currencySelectToConvert.value) {
+        case 'real':
+            leftBoxName.innerText = 'Real Brasileiro';
+            leftBoxImage.src = './assets/ImgBR.png';
+            break;
+        case 'dolar':
+            leftBoxName.innerText = 'Dólar Americano';
+            leftBoxImage.src = './assets/ImgUSA.png';
+            break;
+        case 'euro':
+            leftBoxName.innerText = 'Euro';
+            leftBoxImage.src = './assets/ImgEURO.png';
+            break;
+        case 'iene':
+            leftBoxName.innerText = 'Iene';
+            leftBoxImage.src = './assets/ImgJP.png';
+            break;
+    }
+
+    // Box da direita (moeda de destino):
+    switch (currencySelect.value) {
+        case 'real':
+            rightBoxName.innerText = 'Real Brasileiro';
+            rightBoxImage.src = './assets/ImgBR.png';
+            break;
+        case 'dolar':
+            rightBoxName.innerText = 'Dólar Americano';
+            rightBoxImage.src = './assets/ImgUSA.png';
+            break;
+        case 'euro':
+            rightBoxName.innerText = 'Euro';
+            rightBoxImage.src = './assets/ImgEURO.png';
+            break;
+        case 'iene':
+            rightBoxName.innerText = 'Iene';
+            rightBoxImage.src = './assets/ImgJP.png';
+            break;
+    }
+}
+
+// Função que desabilita moedas iguais nos dois selects
+function updateCurrencySelectOptions() {
+    const selectedFrom = currencySelectToConvert.value;
+    const selectedTo = currencySelect.value;
+
+    // Atualiza opções do select de destino
+    const toOptions = currencySelect.options;
+    for (let i = 0; i < toOptions.length; i++) {
+        toOptions[i].disabled = toOptions[i].value === selectedFrom;
+    }
+
+    // Atualiza opções do select de origem
+    const fromOptions = currencySelectToConvert.options;
+    for (let i = 0; i < fromOptions.length; i++) {
+        fromOptions[i].disabled = fromOptions[i].value === selectedTo;
+    }
+}
+
+
+// Eventos de mudança nos selects e clique no botão “Converter”
+currencySelectToConvert.addEventListener('change', () => {
+    updateBoxesUI();
+    updateCurrencySelectOptions();
+    convertValues();
+});
+
+currencySelect.addEventListener('change', () => {
+    updateBoxesUI();
+    updateCurrencySelectOptions();
+    convertValues();
+});
+
+convertButton.addEventListener('click', () => {
+    convertValues();
+});
+
+// Clique na seta: faz o swap dos valores dos dois selects
+arrow.addEventListener('click', () => {
+    const temp = currencySelect.value;
+    currencySelect.value = currencySelectToConvert.value;
+    currencySelectToConvert.value = temp;
+
+    updateBoxesUI();
+    updateCurrencySelectOptions();
+    convertValues();
+});
+
+// Ao carregar a página
+window.addEventListener('DOMContentLoaded', () => {
+    updateBoxesUI();
+    updateCurrencySelectOptions();
+    convertValues();
+});
