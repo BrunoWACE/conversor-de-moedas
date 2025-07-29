@@ -229,7 +229,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 // Versão 3 (FEFINITIVA)
-
 const currencySelectToConvert = document.querySelector('.currency-select-to-convert');
 const currencySelect = document.querySelector('.currency-select');
 const convertButton = document.querySelector('.convert-button');
@@ -374,3 +373,4 @@ window.addEventListener('DOMContentLoaded', () => {
     updateCurrencySelectOptions();
     convertValues();
 });
+
